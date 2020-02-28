@@ -51,6 +51,9 @@
     
   }
 
+  header("Content-Type: text/plain");
+  
+  
   if (preg_match("/^[А-Яа-я\-.]+$/", $pass) || $pass == null)
   {
     echo "Неккоректный пароль";
@@ -59,10 +62,6 @@
   {
     echo "Надежность пароля: ", $security;
   }
-
-  header("Content-Type: text/plain");
-  
-  
   
 
   
