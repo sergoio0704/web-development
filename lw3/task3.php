@@ -6,6 +6,7 @@
 
   $pass = getGetParametr('password');
   $passArray = str_split($pass);
+  $repeatArray = array_count_values($passArray);
   $numOfUpper = 0;
   $numOfDigit = 0;
   $numOfLower = 0;
@@ -28,9 +29,7 @@
 
     }  
   }
-  $repeatArray = array_count_values($passArray);
-  
-   
+    
   $security  = $security  + 4*$passLength + $numOfDigit + (($passLength-$numOfUpper)*2) + (($passLength-$numOfLower)*2) ;
 
   if (preg_match("/^[a-zA-Z]+$/", $pass))
@@ -52,9 +51,18 @@
     
   }
 
+  if (preg_match("/^[А-Яа-я\-.]+$/", $pass) || $pass == null)
+  {
+    echo "Неккоректный пароль";
+  }
+  else
+  {
+    echo "Надежность пароля: ", $security;
+  }
+
   header("Content-Type: text/plain");
   
-  echo "Надежность пароля: ", $security;
+  
   
 
   
